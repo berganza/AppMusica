@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Listado Canciones</title>
+<!-- Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+<link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<div class="navbar">
+			<br>
+			<h2>Listado</h2>
+		</div>
+		<table
+			class="table table-striped table-hover table-bordered table-dark">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Titulo</th>
+					<th>Autor</th>
+					<th>Minutos</th>
+					<th>Imagen</th>
+					<th>Estreno</th>
+					<th>Estatus</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cancion : ${canciones}">
+					<td th:text="${cancion.id}"></td>
+					<td th:text="${cancion.titulo}"></td>
+					<td th:text="${cancion.autor}"></td>
+					<td th:text="${cancion.duracion}"></td>
+					<td><img th:src="@{'/images/' + ${cancion.imagen}}" alt="kk" width="70" height="100" /></td>
+					<td th:text="${cancion.fechaEstreno}"></td>
+					<td><div th:if="${cancion.estatus == 'Activa'}">
+							<span class="badge badge-success">ACTIVA</span>
+						</div>
+						<div th:if="${cancion.estatus == 'Inactiva'}">
+							<span class="badge badge-danger">INACTIVA</span>
+						</div></td>
+					<td><a class="btn btn-info"
+						th:href="@{/save/{id}(id=${cancion.id})}">Editar</a></td>
+					<td><a class="btn btn-danger"
+						th:href="@{/delete/{id}(id=${cancion.id})}">Eliminar</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br><br>
+	
+	
+	<div class="container">
+	<h2>MP3</h2>
+	<br>
+		<audio controls>
+		    <source src="../mp3/TheThillisGone.mp3" type="audio/mpeg">
+		</audio>
+	</div>
+	<br><br><br>
+	
+	<div class="container">
+	<h2>VIDEOS INTERNOS</h2>
+		<video width="320" height="240" controls>
+  			<source src="../video/TheThrillIsGone.mp4" type="video/mp4">
+		</video>
+		<video width="320" height="240" controls>
+  			<source src="../video/TheThrillIsGone.mp4" type="video/mp4">
+		</video>
+	</div>
+	<br><br><br>
+	
+	<div class="container">
+		<h2>VIDEOS ENLACE A YOUTUBE</h2>
+		<br>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/HzTlB-TjAzM" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/P4SYct1sAj4?start=13" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/kdLz-Rr3Eho" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
+	<br><br><br>
+
+
+
+	<!-- Footer -->
+	<footer class="page-footer font-small cyan darken-3">
+
+		<!-- Footer Elements -->
+		<div class="container">
+			<h5>Acciones</h5>
+			<div>
+				<a href="/save/0" class="btn btn-primary">Agregar Canciones</a> <a
+					class="btn btn-primary" th:href="consulta">Busqueda por Filtro</a>
+			</div>
+			<!-- Grid row-->
+			<div class="row">
+
+				<!-- Grid column -->
+				<div class="col-md-12 py-5">
+					<div class="mb-5 flex-center">
+
+						<!-- Facebook -->
+						<a class="fb-ic"><i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"></i></a>
+						<!-- Twitter -->
+						<a class="tw-ic"> <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"></i></a>
+						<!-- Google +-->
+						<a class="gplus-ic"> <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"></i></a>
+						<!--Linkedin -->
+						<a class="li-ic"> <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"></i></a>
+						<!--Instagram-->
+						<a class="ins-ic"> <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"></i></a>
+						<!--Pinterest-->
+						<a class="pin-ic"> <i class="fab fa-pinterest fa-lg white-text fa-2x"></i></a>
+					</div>
+				</div>
+				<!-- Grid column -->
+
+			</div>
+			<!-- Grid row-->
+
+		</div>
+		<!-- Footer Elements -->
+
+		<!-- Copyright -->
+		<div class="footer-copyright text-center py-3">
+			© 2019 Copyright: <a href="https://twitter.com/LLBerganza">@Berg</a>
+		</div>
+		<!-- Copyright -->
+	</footer>
+	<!-- Footer -->
+	<br>
+	<br>
+	<br>
+</body>
+</html>
